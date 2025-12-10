@@ -130,6 +130,16 @@
         </div>
     </nav>
 
+    <!-- Work In Progress Banner (New Addition) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+        <div class="p-4 rounded-xl bg-cute-yellow/70 border-4 border-cute-yellow flex items-center shadow-md">
+            <span class="text-2xl mr-3 animate-pulse">🚧</span>
+            <p class="font-bold text-cute-dark text-center flex-grow">
+                Heads up! This website is a **Work in Progress** and is still under construction. Thanks for being patient while we finish building!
+            </p>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <header class="relative overflow-hidden pt-12 pb-24 text-center">
         <div class="relative z-10 px-4">
@@ -161,7 +171,7 @@
     <main id="games" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="flex items-center justify-between mb-8">
             <h2 class="text-3xl font-bold text-cute-dark">The Game Arcade</h2>
-            <!-- Removed the game filter options as requested -->
+            <!-- Filter options removed as requested -->
             
         </div>
 
@@ -259,41 +269,8 @@
 
     <!-- JavaScript Logic -->
     <script>
-        // Default Games Data - Now uses external URLs (Placeholder links to be replaced with your actual GitHub Pages links)
+        // Default Games Data - Now includes ONLY the approved game.
         const games = [
-            {
-                id: 1,
-                title: "Color Matcher",
-                author: "Aslam Ali",
-                color: "bg-cute-pink",
-                icon: "🎨",
-                url: "https://github.com/AslamAli/color-matcher/index.html" // REPLACE THIS URL
-            },
-            {
-                id: 2,
-                title: "Emoji Popper",
-                author: "Aslam Ali",
-                color: "bg-cute-blue",
-                icon: "🎈",
-                url: "https://github.com/AslamAli/emoji-popper/index.html" // REPLACE THIS URL
-            },
-            {
-                id: 3,
-                title: "Math Whiz",
-                author: "Guest Creator",
-                color: "bg-cute-yellow", // Changed color to cycle the palette
-                icon: "🔢",
-                url: "https://github.com/GuestCreator/math-whiz/index.html" // REPLACE THIS URL
-            },
-             {
-                id: 4,
-                title: "Space Dodger",
-                author: "Aslam Ali",
-                color: "bg-cute-purple", // Changed color to cycle the palette
-                icon: "🚀",
-                url: "https://github.com/AslamAli/space-dodger/index.html" // REPLACE THIS URL
-            },
-            // --- NEW GAME ADDED ---
             {
                 id: 5,
                 title: "Mapmaker's Trail",
@@ -302,7 +279,6 @@
                 icon: "🗺️",
                 url: "https://rowebs.github.io/Mapmaker-s-trail-a-drawing-game/"
             }
-            // ------------------------
         ];
 
         // Initialization
@@ -314,6 +290,20 @@
         function renderGames() {
             const grid = document.getElementById('game-grid');
             grid.innerHTML = '';
+            
+            // Check if there are any games to display, otherwise show a message
+            if (games.length === 0) {
+                 grid.classList.remove('grid'); // Remove grid layout if empty
+                 grid.innerHTML = `
+                    <div class="col-span-full text-center py-12 bg-white rounded-3xl border-2 border-cute-purple/50 shadow-inner">
+                        <p class="text-2xl font-bold text-gray-500 mb-2">More Games Coming Soon!</p>
+                        <p class="text-gray-400">This section will fill up as we add more awesome games. Check back later!</p>
+                    </div>
+                 `;
+                 return; // Stop execution if no games
+            } else {
+                 grid.classList.add('grid'); // Ensure grid layout is active if games exist
+            }
 
             games.forEach(game => {
                 const card = document.createElement('div');
